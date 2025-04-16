@@ -7424,8 +7424,8 @@ Transform:
   - {fileID: 1680231148}
   - {fileID: 720018002}
   - {fileID: 1872051}
-  - {fileID: 1838135006}
   - {fileID: 2049314178}
+  - {fileID: 1838135006}
   m_Father: {fileID: 672900421}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24018,7 +24018,7 @@ GameObject:
   - component: {fileID: 1758264423}
   m_Layer: 0
   m_Name: XR Origin (XR Rig) (1)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
