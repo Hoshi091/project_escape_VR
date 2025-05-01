@@ -1,36 +1,34 @@
+using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    public GameObject dialoguePanel;
-    public TMP_Text dialogueText; // or TMP_Text if using TextMeshPro
-    public float displayTime = 4f;
+    public GameObject dialogueCanvas;
+    public TextMeshProUGUI dialogueText;
 
-    private float timer;
+    private Coroutine currentDialogue;
 
-    void Start()
+    public void ShowDialogueSequence(string[] messages, Color[] colors, float interval = 4f)
     {
-        dialoguePanel.SetActive(false);
+        if (currentDialogue != null)
+            StopCoroutine(currentDialogue);
+
+        currentDialogue = StartCoroutine(DisplayDialogue(messages, colors, interval));
     }
 
-    public void ShowDialogue(string message)
+    private IEnumerator DisplayDialogue(string[] messages, Color[] colors, float interval)
     {
-        dialoguePanel.SetActive(true);
-        dialogueText.text = message;
-        timer = displayTime;
-    }
+        dialogueCanvas.SetActive(true);
 
-    void Update()
-    {
-        if (dialoguePanel.activeSelf)
+        for (int i = 0; i < messages.Length; i++)
         {
-            timer -= Time.deltaTime;
-            if (timer <= 0f)
-            {
-                dialoguePanel.SetActive(false);
-            }
+            dialogueText.color = colors[i];
+            dialogueText.text = messages[i];
+            yield return new WaitForSeconds(interval);
         }
+
+        dialogueCanvas.SetActive(false);
+        currentDialogue = null;
     }
 }
