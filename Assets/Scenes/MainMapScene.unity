@@ -13584,7 +13584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b32ab73072d44c45b077e05275f0b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorAnimator: {fileID: 0}
+  doorAnimator: {fileID: 1422067054}
 --- !u!1 &340776807
 GameObject:
   m_ObjectHideFlags: 0
@@ -26727,7 +26727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &678024114
 MonoBehaviour:
   m_ObjectHideFlags: 0
