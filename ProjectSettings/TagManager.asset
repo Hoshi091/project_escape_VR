@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - KeyCard
+  - IndicatorCube
+  - Key
   layers:
   - Default
   - TransparentFX
