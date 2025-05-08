@@ -10,35 +10,45 @@ public class KeypadButton : MonoBehaviour
     public AudioSource pressSound;
 
     private Vector3 originalPosition;
-    private bool isAnimating;
+    private Renderer rend;
+    private bool isPressed = false;
 
     private void Start()
     {
         originalPosition = transform.localPosition;
+        rend = GetComponent<Renderer>();
     }
 
     public void Press()
     {
-        if (isAnimating) return;
-        isAnimating = true;
+        if (isPressed) return;
+        isPressed = true;
 
-        pressSound?.Play();
-        keypadController.PressKey(keyValue);
-
-        StartCoroutine(PressAnimation());
-    }
-
-    private IEnumerator PressAnimation()
-    {
-        Vector3 pressedPosition = new Vector3(
+        transform.localPosition = new Vector3(
             originalPosition.x,
             originalPosition.y,
-            0.055f // target Z value
+            0.055f
         );
 
-        transform.localPosition = pressedPosition;
-        yield return new WaitForSeconds(0.1f); // hold for short feedback
+        SetEmission(true);
+        pressSound?.Play();
+        keypadController.PressKey(keyValue, this); // Pass reference to self
+    }
+
+    public void ResetButton()
+    {
         transform.localPosition = originalPosition;
-        isAnimating = false;
+        SetEmission(false);
+        isPressed = false;
+    }
+
+    private void SetEmission(bool on)
+    {
+        if (rend == null) return;
+        if (on)
+            rend.material.EnableKeyword("_EMISSION");
+        else
+            rend.material.DisableKeyword("_EMISSION");
     }
 }
+

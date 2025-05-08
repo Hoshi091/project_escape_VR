@@ -5309,7 +5309,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1909494593100496, guid: c154bbb6018472343a6a2fd53da91077, type: 3}
       propertyPath: m_Name
-      value: SM_Prop_Keypad_01
+      value: Prop_Keypad_Custom
       objectReference: {fileID: 0}
     - target: {fileID: 4173359651991484, guid: c154bbb6018472343a6a2fd53da91077, type: 3}
       propertyPath: m_RootOrder
