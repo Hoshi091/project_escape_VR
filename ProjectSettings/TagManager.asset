@@ -7,6 +7,7 @@ TagManager:
   - KeyCard
   - IndicatorCube
   - Key
+  - Hand
   layers:
   - Default
   - TransparentFX
