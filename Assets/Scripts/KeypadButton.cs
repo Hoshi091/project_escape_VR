@@ -10,7 +10,7 @@ public class KeypadButton : MonoBehaviour
     public AudioSource pressSound;
 
     private Vector3 originalPosition;
-    private Renderer rend;
+private Renderer rend;
     private bool isPressed = false;
 
     private void Start()
@@ -42,13 +42,39 @@ public class KeypadButton : MonoBehaviour
         isPressed = false;
     }
 
+    // Hover Glow ON
+    public void OnHoverEnter(HoverEnterEventArgs args)
+    {
+        SetEmission(true);
+    }
+
+    // Hover Glow OFF
+    public void OnHoverExit(HoverExitEventArgs args)
+    {
+        SetEmission(false);
+    }
+
     private void SetEmission(bool on)
     {
         if (rend == null) return;
+
         if (on)
+        {
             rend.material.EnableKeyword("_EMISSION");
+            rend.material.SetColor("_EmissionColor", Color.yellow); // glowing yellow
+        }
         else
+        {
             rend.material.DisableKeyword("_EMISSION");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Hand"))
+        {
+            Debug.Log($"Button '{gameObject.name}' pressed by {other.name}");
+            Press();
+        }
     }
 }
-
