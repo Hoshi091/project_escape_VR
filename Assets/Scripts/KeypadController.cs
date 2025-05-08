@@ -8,6 +8,9 @@ public class KeypadController : MonoBehaviour
     public GameObject indicatorCube; // light to change color
     public AudioSource successSound;
     public AudioSource failSound;
+
+    public Animator leftDoorAnimator;
+    public Animator rightDoorAnimator;
     
     private List<KeypadButton> pressedButtons = new List<KeypadButton>();
     private string currentInput = "";
@@ -24,6 +27,8 @@ public void PressKey(string key, KeypadButton button)
                 Debug.Log("Correct Code!");
                 indicatorCube.GetComponent<Renderer>().material.color = Color.green;
                 successSound?.Play();
+
+                 OpenDoors();
             }
             else
             {
@@ -34,6 +39,15 @@ public void PressKey(string key, KeypadButton button)
 
             StartCoroutine(ResetAfterDelay());
         }
+    }
+
+    private void OpenDoors()
+    {
+        if (leftDoorAnimator != null)
+            leftDoorAnimator.SetTrigger("Open");
+
+        if (rightDoorAnimator != null)
+            rightDoorAnimator.SetTrigger("Open");
     }
 
     private IEnumerator ResetAfterDelay()
