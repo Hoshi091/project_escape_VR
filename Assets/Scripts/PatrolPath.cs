@@ -72,15 +72,19 @@ public class PatrolPath : MonoBehaviour
 
     float angle = Vector3.Angle(flatEnemyForward, flatDirectionToPlayer);
 
-    // Full 3D direction for raycasting
-    Vector3 directionToPlayer = (player.position + Vector3.up) - (transform.position + Vector3.up);
+    Vector3 rayOrigin = transform.position + Vector3.up * 1.5f; // Raise origin higher
+    Vector3 rayTarget = player.position + Vector3.up * 0.5f;     // Aim closer to player's chest/head
+    Vector3 directionToPlayer = rayTarget - rayOrigin;
+
 
     if (directionToPlayer.magnitude < viewDistance && angle < viewAngle / 2f)
     {
-        Ray ray = new Ray(transform.position + Vector3.up, directionToPlayer.normalized);
+        Ray ray = new Ray(rayOrigin, directionToPlayer.normalized);
         if (Physics.Raycast(ray, out RaycastHit hit, viewDistance))
         {
-            if (hit.collider.CompareTag("Player"))
+            Debug.DrawRay(rayOrigin, directionToPlayer.normalized * viewDistance, Color.red);
+            Debug.Log("Raycast hit: " + hit.collider.name);
+            if (hit.collider.transform.root.CompareTag("Player"))
                 return true;
         }
     }
