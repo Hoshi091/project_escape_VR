@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
+
 
 public class PatrolPath : MonoBehaviour
 {
@@ -16,6 +18,10 @@ public class PatrolPath : MonoBehaviour
     public float patrolSpeed = 2f;
 
     private bool isChasing = false;
+
+    public CanvasGroup fadeCanvas; 
+    public float fadeDuration = 1.5f;
+    private bool gameOverTriggered = false;
 
     void Start()
     {
@@ -92,13 +98,39 @@ public class PatrolPath : MonoBehaviour
     return false;
 }
 
+    IEnumerator TriggerGameOverSequence()
+{
+    gameOverTriggered = true;
+
+    agent.isStopped = true;
+    if (animator != null)
+        animator.SetTrigger("Punch");
+
+    Vector3 forward = player.forward;
+    forward.y = 0;
+    transform.position = player.position + forward.normalized * 1.5f;
+    transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
+
+    float t = 0f;
+    while (t < fadeDuration)
+    {
+        t += Time.deltaTime;
+        fadeCanvas.alpha = Mathf.Lerp(0, 1, t / fadeDuration);
+        yield return null;
+    }
+
+    Debug.Log("Game Over.");
+
+}
+
+
 
     void OnTriggerEnter(Collider other)
+{
+    if (!gameOverTriggered && other.CompareTag("Player"))
     {
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Game Over!");
-            // TODO: trigger actual game over logic here
-        }
+        Debug.Log("Game Over Triggered!");
+        StartCoroutine(TriggerGameOverSequence());
     }
+}
 }
