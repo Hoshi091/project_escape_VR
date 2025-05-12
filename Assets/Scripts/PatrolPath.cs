@@ -19,9 +19,12 @@ public class PatrolPath : MonoBehaviour
 
     private bool isChasing = false;
 
-    public CanvasGroup fadeCanvas; 
     public float fadeDuration = 1.5f;
     private bool gameOverTriggered = false;
+
+    public Animator fadeAnimator;
+
+    public Transform playerCamera;
 
     void Start()
     {
@@ -98,30 +101,41 @@ public class PatrolPath : MonoBehaviour
     return false;
 }
 
-    IEnumerator TriggerGameOverSequence()
+IEnumerator TriggerGameOverSequence()
 {
     gameOverTriggered = true;
 
-    agent.isStopped = true;
+    // Position the enemy just in front of the camera
+    Vector3 forward = playerCamera.forward;
+    forward.y = 0;  // Ensure we ignore the vertical axis
+
+    // Adjust the distance in front of the camera
+    float distanceInFrontOfCamera = 1f; // Adjust this value to get the closeness right
+    transform.position = playerCamera.position + forward * distanceInFrontOfCamera;
+
+    // Correct the rotation: Look at the player's position
+    Vector3 lookDirection = player.position - transform.position;
+    lookDirection.y = 0;  // Ignore the vertical axis to keep the enemy on the same ground level
+    transform.rotation = Quaternion.LookRotation(lookDirection);  // Set the enemy's rotation to face the player
+
+    transform.Rotate(0, -15f, 0); 
+
+        agent.isStopped = true;
     if (animator != null)
         animator.SetTrigger("Punch");
 
-    Vector3 forward = player.forward;
-    forward.y = 0;
-    transform.position = player.position + forward.normalized * 1.5f;
-    transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
+    if (fadeAnimator != null)
+        fadeAnimator.SetTrigger("Fade");
 
-    float t = 0f;
-    while (t < fadeDuration)
-    {
-        t += Time.deltaTime;
-        fadeCanvas.alpha = Mathf.Lerp(0, 1, t / fadeDuration);
-        yield return null;
-    }
+    yield return new WaitForSeconds(fadeDuration);
 
     Debug.Log("Game Over.");
-
 }
+
+
+
+
+
 
 
 
