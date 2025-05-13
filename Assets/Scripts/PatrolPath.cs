@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
+
 
 public class PatrolPath : MonoBehaviour
 {
@@ -16,6 +18,13 @@ public class PatrolPath : MonoBehaviour
     public float patrolSpeed = 2f;
 
     private bool isChasing = false;
+
+    public float fadeDuration = 1.5f;
+    private bool gameOverTriggered = false;
+
+    public Animator fadeAnimator;
+
+    public Transform playerCamera;
 
     void Start()
     {
@@ -72,15 +81,19 @@ public class PatrolPath : MonoBehaviour
 
     float angle = Vector3.Angle(flatEnemyForward, flatDirectionToPlayer);
 
-    // Full 3D direction for raycasting
-    Vector3 directionToPlayer = (player.position + Vector3.up) - (transform.position + Vector3.up);
+    Vector3 rayOrigin = transform.position + Vector3.up * 1.5f; // Raise origin higher
+    Vector3 rayTarget = player.position + Vector3.up * 0.5f;     // Aim closer to player's chest/head
+    Vector3 directionToPlayer = rayTarget - rayOrigin;
+
 
     if (directionToPlayer.magnitude < viewDistance && angle < viewAngle / 2f)
     {
-        Ray ray = new Ray(transform.position + Vector3.up, directionToPlayer.normalized);
+        Ray ray = new Ray(rayOrigin, directionToPlayer.normalized);
         if (Physics.Raycast(ray, out RaycastHit hit, viewDistance))
         {
-            if (hit.collider.CompareTag("Player"))
+            Debug.DrawRay(rayOrigin, directionToPlayer.normalized * viewDistance, Color.red);
+            Debug.Log("Raycast hit: " + hit.collider.name);
+            if (hit.collider.transform.root.CompareTag("Player"))
                 return true;
         }
     }
@@ -88,13 +101,50 @@ public class PatrolPath : MonoBehaviour
     return false;
 }
 
+IEnumerator TriggerGameOverSequence()
+{
+    gameOverTriggered = true;
+
+    // Position the enemy just in front of the camera
+    Vector3 forward = playerCamera.forward;
+    forward.y = 0;  // Ensure we ignore the vertical axis
+
+    // Adjust the distance in front of the camera
+    float distanceInFrontOfCamera = 1f; // Adjust this value to get the closeness right
+    transform.position = playerCamera.position + forward * distanceInFrontOfCamera;
+
+    // Correct the rotation: Look at the player's position
+    Vector3 lookDirection = player.position - transform.position;
+    lookDirection.y = 0;  // Ignore the vertical axis to keep the enemy on the same ground level
+    transform.rotation = Quaternion.LookRotation(lookDirection);  // Set the enemy's rotation to face the player
+
+    transform.Rotate(0, -15f, 0); 
+
+        agent.isStopped = true;
+    if (animator != null)
+        animator.SetTrigger("Punch");
+
+    if (fadeAnimator != null)
+        fadeAnimator.SetTrigger("Fade");
+
+    yield return new WaitForSeconds(fadeDuration);
+
+    Debug.Log("Game Over.");
+}
+
+
+
+
+
+
+
 
     void OnTriggerEnter(Collider other)
+{
+    if (!gameOverTriggered && other.CompareTag("Player"))
     {
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Game Over!");
-            // TODO: trigger actual game over logic here
-        }
+        Debug.Log("Game Over Triggered!");
+        StartCoroutine(TriggerGameOverSequence());
     }
+}
 }
