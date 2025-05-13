@@ -22,6 +22,7 @@ public class KeyUnlockDoor : MonoBehaviour
         if (other.CompareTag(keyTag))
         {
             Debug.Log("Key detected, moving into lock.");
+            Debug.Log($"Key starts at {startRot.eulerAngles}, target is {endRot.eulerAngles}");
 
             // Disable grabbing
             var grab = other.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRGrabInteractable>();
