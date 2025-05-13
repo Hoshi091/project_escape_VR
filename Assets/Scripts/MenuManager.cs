@@ -10,7 +10,6 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
-        // Pauznuj hru na začiatku
         Time.timeScale = 0f;
 
         if (mainMenuUI != null)
@@ -22,7 +21,7 @@ public class MenuManager : MonoBehaviour
         if (mainMenuUI != null)
             mainMenuUI.SetActive(false);
 
-        Time.timeScale = 1f; // Spusti hru
+        Time.timeScale = 1f;
     }
 
     public void QuitGame()
