@@ -10583,7 +10583,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 2
+  MaxDistance: 3
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -27452,7 +27452,7 @@ GameObject:
   - component: {fileID: 625678687}
   m_Layer: 0
   m_Name: Right Controller
-  m_TagString: Hand
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30042,25 +30042,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4837329652793204, guid: 88498815dea432045b6eaa9875ec268a, type: 3}
   m_PrefabInstance: {fileID: 673022934}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &674266901 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1745959215244736, guid: abb9e5d837b6c094bb99549998536c5f, type: 3}
-  m_PrefabInstance: {fileID: 23952410}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &674266907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 674266901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d2f35c0d8171d644883b8c65ffd9dc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  glowEffect: {fileID: 674266901}
-  disableDistance: 3
 --- !u!1001 &674783857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32315,6 +32296,68 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &716967958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 716967959}
+  - component: {fileID: 716967961}
+  - component: {fileID: 716967960}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Hand
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &716967959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716967958}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -0, z: 0.0783}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 857460269}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &716967960
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716967958}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &716967961
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716967958}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.015
+  m_Center: {x: 0, y: 0, z: 0.02}
 --- !u!1 &717758132
 GameObject:
   m_ObjectHideFlags: 0
@@ -39337,7 +39380,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88fd9b3dc16e3384ab7b4b40d674eea0, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88fd9b3dc16e3384ab7b4b40d674eea0, type: 3}
       propertyPath: m_LocalScale.x
@@ -40145,15 +40188,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4015176889313698, guid: 6eb0e414c4ccbc94b813f8ebfeacce06, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 48.2906
+      value: 48.495
       objectReference: {fileID: 0}
     - target: {fileID: 4015176889313698, guid: 6eb0e414c4ccbc94b813f8ebfeacce06, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.541
+      value: -3.864
       objectReference: {fileID: 0}
     - target: {fileID: 4015176889313698, guid: 6eb0e414c4ccbc94b813f8ebfeacce06, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.796
+      value: -11.811
       objectReference: {fileID: 0}
     - target: {fileID: 4015176889313698, guid: 6eb0e414c4ccbc94b813f8ebfeacce06, type: 3}
       propertyPath: m_LocalRotation.w
@@ -43674,7 +43717,7 @@ GameObject:
   - component: {fileID: 946688053}
   m_Layer: 0
   m_Name: Left Controller
-  m_TagString: Hand
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68367,25 +68410,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4300076638726560, guid: 7dec6b91453426943a71d5e29aee5e85, type: 3}
   m_PrefabInstance: {fileID: 1544767017}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1548758332 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1209497365628461329, guid: 8d686b48d0503e242b5deaa2077f5a3a, type: 3}
-  m_PrefabInstance: {fileID: 1210966780287927100}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1548758346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548758332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0480978ecef2184da388e73640b3e98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  glowEffect: {fileID: 1548758332}
-  disableDistance: 3
 --- !u!1001 &1549104585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77057,7 +77081,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 1.5
+  MaxDistance: 2
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -77153,7 +77177,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 1.5
+  MaxDistance: 2
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -77243,20 +77267,6 @@ MonoBehaviour:
   doorAnimator: {fileID: 1751913369}
   openSound: {fileID: 1751913371}
   closeSound: {fileID: 1751913370}
---- !u!114 &1751913376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1408686263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d2f35c0d8171d644883b8c65ffd9dc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  glowEffect: {fileID: 1408686263}
-  disableDistance: 3
 --- !u!1001 &1754937492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78510,7 +78520,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 2
+  MaxDistance: 3
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -90142,7 +90152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018411185}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.819624, y: 2.825009, z: -48.047676}
+  m_LocalPosition: {x: -9.81, y: 2.656, z: -48.105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -95283,7 +95293,15 @@ PrefabInstance:
       objectReference: {fileID: 906811179}
     - target: {fileID: 473856257, guid: 8d686b48d0503e242b5deaa2077f5a3a, type: 3}
       propertyPath: MaxDistance
-      value: 1.5
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 473856258, guid: 8d686b48d0503e242b5deaa2077f5a3a, type: 3}
+      propertyPath: MaxDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 473856258, guid: 8d686b48d0503e242b5deaa2077f5a3a, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 770021989, guid: 8d686b48d0503e242b5deaa2077f5a3a, type: 3}
       propertyPath: m_InteractionManager
@@ -95312,6 +95330,10 @@ PrefabInstance:
     - target: {fileID: 945534923, guid: 8d686b48d0503e242b5deaa2077f5a3a, type: 3}
       propertyPath: m_LocalScale.z
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 988518709, guid: 8d686b48d0503e242b5deaa2077f5a3a, type: 3}
+      propertyPath: m_TagString
+      value: IndicatorCube
       objectReference: {fileID: 0}
     - target: {fileID: 1037975976, guid: 8d686b48d0503e242b5deaa2077f5a3a, type: 3}
       propertyPath: m_Enabled
