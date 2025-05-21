@@ -10,7 +10,7 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
-        //Time.timeScale = 0f;
+        Time.timeScale = 0f;
 
         if (mainMenuUI != null)
             mainMenuUI.SetActive(true);

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 
 public class PatrolPath : MonoBehaviour
@@ -129,15 +130,10 @@ IEnumerator TriggerGameOverSequence()
 
     yield return new WaitForSeconds(fadeDuration);
 
+    Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene("MainMapScene");
+
     Debug.Log("Game Over.");
 }
-
-
-
-
-
-
-
 
     void OnTriggerEnter(Collider other)
 {
